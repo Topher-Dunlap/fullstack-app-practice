@@ -7,6 +7,12 @@ const app = express();
 app.use(morgan('common')); // let's see what 'common' format looks like
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res
+         .status(200)
+         .send('Hello Express!');
+});
+
 let apps = app.get('/apps', (req, res) => {
     const {search = "", sort, genre} = req.query;
     if (sort) {
@@ -49,7 +55,4 @@ let apps = app.get('/apps', (req, res) => {
 
 });
 
-
-app.listen(8000, () => {
-    console.log('Server started on PORT 8000');
-});
+module.exports = app;
